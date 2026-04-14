@@ -1,0 +1,17 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Jupyter
+*.ipynb
+.ipynb_checkpoints/
+
+# DBT
+swiss_transport/target/
+swiss_transport/dbt_packages/
+swiss_transport/logs/
+
+# macOS
+.DS_Store
