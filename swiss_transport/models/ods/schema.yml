@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: ods_transport_mode  # Replace with your actual model filename
+    description: "Staging model for Swiss transport data with translated transport modes."
+    columns:
+      - name: TRANSPORT_MODE_DE
+        description: "Original transport mode name in German (e.g., ZUG, SCHIFF)."
+
+      - name: TRANSPORT_MODE_FR
+        description: "Transport mode translated into French and converted to uppercase."
+        data_tests:
+          - accepted_values:
+              values: ['BATEAU', 'BUS', 'MÉTRO', 'TRAIN', 'TRAIN À CRÉMAILLÈRE', 'TRAMWAY', 'AUTRE / INCONNU']
+
+      - name: TRANSPORT_MODE_EN
+        description: "Transport mode translated into English and converted to uppercase."
+        data_tests:
+          - accepted_values:
+              values: ['BOAT', 'BUS', 'METRO', 'TRAIN', 'COGWHEEL RAILWAY', 'TRAM', 'OTHER / UNKNOWN']
+  
+  - name: ods_forecast_type 
+    description: "ODS model for Swiss transport data with translated forecast type. Either it is forecasted, either it is the real time of departure etc."   
+    columns:
+      - name: FORECAST_TYPE
+        description: "Original forecast status from the source (German)."
+
+      - name: FORECAST_TYPE_FR
+        description: "Forecast status translated into French (UPPER)."
+        data_tests:
+          - accepted_values:
+              values: ['RÉEL', 'ESTIMÉ', 'PRÉVISION', 'INCONNU', 'NON DÉFINI']
+
+      - name: FORECAST_TYPE_EN
+        description: "Forecast status translated into English (UPPER)."
+        data_tests:
+          - accepted_values:
+              values: ['REAL', 'ESTIMATED', 'FORECAST', 'UNKNOWN', 'UNDEFINED']

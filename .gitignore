@@ -1,0 +1,26 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.csv
+# Jupyter
+*.ipynb
+.ipynb_checkpoints/
+
+# DBT
+swiss_transport/target/
+swiss_transport/dbt_packages/
+swiss_transport/logs/
+swiss_transport/raw_data/
+*.duckdb
+*.duckdb.wal
+
+# Logs
+logs/
+
+# Git backup
+.git.backup/
+
+# macOS
+.DS_Store

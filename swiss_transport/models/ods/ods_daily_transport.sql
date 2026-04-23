@@ -1,0 +1,25 @@
+SELECT 
+    
+    {{to_date_ch("BETRIEBSTAG")}}           AS OPERATING_DAY,
+    "FAHRT_BEZEICHNER"::VARCHAR             AS TRIP_IDENTIFIER,
+    "BETREIBER_ID"::VARCHAR                 AS OPERATOR_ID,
+    "BETREIBER_ABK"::VARCHAR                AS OPERATOR_ABBR,
+    "BETREIBER_NAME"::VARCHAR               AS OPERATOR_NAME,
+    UPPER("PRODUKT_ID")::VARCHAR            AS TRANSPORT_MODE_DE,
+    "LINIEN_ID"::VARCHAR                    AS LINE_ID,
+    "LINIEN_TEXT"::VARCHAR                  AS LINE_TEXT,
+    "UMLAUF_ID"::VARCHAR                    AS CIRCUIT_ID,
+    "VERKEHRSMITTEL_TEXT"::VARCHAR          AS TRANSPORT_MODE_TEXT,
+    "ZUSATZFAHRT_TF"::BOOLEAN               AS ADDITIONAL_TRIP_FLAG,
+    "FAELLT_AUS_TF"::BOOLEAN                AS CANCELLED_FLAG,
+    "BPUIC"::INTEGER                        AS STOP_UIC,
+    "HALTESTELLEN_NAME"::VARCHAR            AS STOP_NAME,
+    {{to_timestamp_ch("ANKUNFTSZEIT")}}     AS ARRIVAL_TIME,
+    {{to_timestamp_ch("AN_PROGNOSE")}}      AS ARRIVAL_FORECAST,
+    UPPER("AN_PROGNOSE_STATUS")::VARCHAR    AS ARRIVAL_FORECAST_STATUS,
+    {{to_timestamp_ch("ABFAHRTSZEIT")}}     AS DEPARTURE_TIME,
+    {{to_timestamp_ch("AB_PROGNOSE")}}      AS DEPARTURE_FORECAST,
+    UPPER("AB_PROGNOSE_STATUS")::VARCHAR    AS DEPARTURE_FORECAST_STATUS,
+    "DURCHFAHRT_TF"::BOOLEAN                AS PASS_THROUGH_FLAG,
+    "SLOID"::VARCHAR                        AS SLO_ID
+FROM {{ref('stg_daily_transport')}}

@@ -1,0 +1,28 @@
+
+version: 2
+
+models:
+  - name: stg_daily_transport
+    description: "Daily Swiss transport CSV files loaded incrementally via DuckDB read_csv_auto"
+    config:
+      materialized: incremental
+
+    columns:
+      - name: _surrogate_key
+        description: "Surrogate key generated from id + source_file"
+        tests:
+          - unique
+          - not_null
+
+      - name: BETRIEBSTAG
+        description: "Operating day — used as the incremental cursor"
+        tests:
+          - not_null
+
+      - name: source_file
+        description: "Original CSV filename this row came from"
+        tests:
+          - not_null
+
+      - name: _loaded_at
+        description: "Timestamp when this row was loaded into the database"
